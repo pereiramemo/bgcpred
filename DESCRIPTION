@@ -1,0 +1,19 @@
+Package: ufBGCtoolbox
+Type: Package
+Title: uf-BGC-toolbox: an ultra-fast biosynthetic gene cluster
+  mining toolbox for metagenomic data
+Version: 0.0.0.9000
+Author: Emiliano Pereira Flores
+Maintainer: Emiliano Pereira Flores <pereiramemo@gmail.com>
+Description: uf-BGC-toolbox consists of three modules: 1) fast
+    identification of BGC protein domains; 2) BGC domain-specific diversity
+    estimation; 3) BGC class relative count predictions.
+License: CC0
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    dplyr (>= 0.5.0),
+    randomForest (>= 4.6-12),
+    tidyr (>= 0.6.1),
+    vegan (>= 2.4-3)
+RoxygenNote: 6.0.1.9000
