@@ -1,13 +1,11 @@
-Package: ufBGCtoolbox
+Package: bgcpred
 Type: Package
-Title: uf-BGC-toolbox: an ultra-fast biosynthetic gene cluster
-  mining toolbox for metagenomic data
+Title: Biosynthetic gene cluster prediction models and functions
 Version: 0.0.0.9000
 Author: Emiliano Pereira Flores
 Maintainer: Emiliano Pereira Flores <pereiramemo@gmail.com>
-Description: uf-BGC-toolbox consists of three modules: 1) fast
-    identification of BGC protein domains; 2) BGC domain-specific diversity
-    estimation; 3) BGC class relative count predictions.
+Description: This package contains the data, functions, and models to train and
+predict the BGC class relative counts based on the annotation of BGC domains.
 License: CC0
 Encoding: UTF-8
 LazyData: true

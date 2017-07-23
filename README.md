@@ -1,2 +1,2 @@
-# ufBGCtoolbox_R_package
-BGC class abudance training and prediction 
+# bgcpred
+Biosynthetic gene cluster class abudance training and prediction. 
