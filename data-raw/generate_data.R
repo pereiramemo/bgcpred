@@ -55,20 +55,28 @@ for ( b in bgc_classes ) {
 
 devtools::use_data(class2dom, models_list, internal = TRUE, overwrite = TRUE)
 
+# -----------------------------------------------------------------------------
+# External data: simulated datasets -------------------------------------------
+# -----------------------------------------------------------------------------
 
 
+OMs_class <- read.table("data/150_class_abund_simulated_OMs.csv",
+                        header=T, sep=",", row.names = 1)
 
-#####
+OMs_domain <- read.table("data/150_domain_abund_simulated_OMs.csv",
+                          header=T, sep=",", row.names = 1)
 
-TBL_DOM_TEST <- read.table("data/150_domain_abund_simulated_TGs.csv",
-                            header=T, sep=",", row.names = 1)
+TGs_class <- read.table("data/150_class_abund_simulated_TGs.csv",
+                        header=T, sep=",", row.names = 1)
 
-TBL_CLASS_TEST <- read.table("data/150_class_abund_simulated_TGs.csv",
-                              header=T, sep=",", row.names = 1)
+TGs_domain <- read.table("data/150_domain_abund_simulated_TGs.csv",
+                         header=T, sep=",", row.names = 1)
 
-data_dom_test <- TBL_DOM_TEST / rowSums(TBL_DOM_TEST)
+# -----------------------------------------------------------------------------
+# Save data -------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
-
-
+devtools::use_data(OMs_class, OMs_domain, TGs_class, TGs_domain,
+                   internal = FALSE, overwrite = F)
 
 
