@@ -5,7 +5,7 @@ Version: 0.0.0.9000
 Author: Emiliano Pereira Flores
 Maintainer: Emiliano Pereira Flores <pereiramemo@gmail.com>
 Description: This package contains the data, functions, and models to train and
-predict the BGC class relative counts based on the annotation of BGC domains.
+  predict the BGC class relative counts based on the annotation of BGC domains.
 License: CC0
 Encoding: UTF-8
 LazyData: true
