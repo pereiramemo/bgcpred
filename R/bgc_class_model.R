@@ -200,7 +200,7 @@ wrap_up_predict <- function(x) {
   used_models <- list()
 
   for ( b in names(models_list)) {
-    print(b)
+
     predictors_var <- models_list[[b]]$doms
     check_predictors <- predictors_var %in% colnames(x)
 
