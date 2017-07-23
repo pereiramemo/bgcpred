@@ -59,7 +59,6 @@ devtools::use_data(class2dom, models_list, internal = TRUE, overwrite = TRUE)
 # External data: simulated datasets -------------------------------------------
 # -----------------------------------------------------------------------------
 
-
 OMs_class <- read.table("data/150_class_abund_simulated_OMs.csv",
                         header=T, sep=",", row.names = 1)
 
