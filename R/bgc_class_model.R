@@ -94,6 +94,10 @@ class_model_train <- function(y,
     predictors_present_train <- x_present
     response_present_train <- y_present
 
+    # remove only zero columns ------------------------------------------------
+
+    predictors_present_train <- predictors_present_train[, colSums(predictors_present_train) > 0]
+
     # train binary model ------------------------------------------------------
 
     set.seed(seed = seed)
