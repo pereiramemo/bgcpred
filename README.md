@@ -20,7 +20,7 @@ class_model_train()
 class_model_predict()  
 wrap_up_predict()  
 
-In [Traning-your-data](https://rawgit.com/wiki/pereiramemo/ufBGCtoolbox/files/bgcpred_workflow.html) we show the analysis workflow necessay to train and test your models.
+In [Traning-your-data](https://rawgit.com/pereiramemo/ufBGCtoolbox/master/machine_leaRning/bgcpred_workflow.html) we show the analysis workflow necessay to train and test your models.
 
 
 
