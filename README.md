@@ -15,7 +15,7 @@ library(bgcpred)
 
 ### Documentation
 bgcpred consists of four functions and a training and testing datasets.  
-get_domains()
+get_domains()  
 class_model_train()  
 class_model_predict()  
 wrap_up_predict()  
