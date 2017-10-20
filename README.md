@@ -3,11 +3,10 @@
 We created 24 BGC class-specific models to predict the relative counts (RCs) of biosynthetic genes cluster classes based on the domain annotation of unassembled metagenomic data. Each model was constructed using RCs of the BGC class and its corresponding protein domains according to the antiSMASH classification rules (Weber et al., 2015), as
 the response and predictor variables, respectively.
 
-To construct a BGC class RC model, we applied a two-step zero-inflated process. First, we predicted the presence or absence of the BGC class using a random forest (RF) binary classifier (Breiman, 2001). Second, we used a multiple linear (ML) regression to predict the BGC class RCs, but only if the class was previously predicted as present (see Figure 1). In the cases where the number of zero values was too low (<10) or non-existent, we directly applied a ML regression (see Figure 1). The models were trained using a simulated metagenomic dataset of 150 samples based on the Ocean Microbial Reference Gene Catalogue (OM-RGC) complete or nearly complete genomes (Sunagawa et al., 2015).
+To construct a BGC class RC model, we applied a two-step zero-inflated process. First, we predicted the presence or absence of the BGC class using a random forest (RF) binary classifier (Breiman, 2001). Second, we used a multiple linear (ML) regression to predict the BGC class RCs, but only if the class was previously predicted as present (see Figure 1). In the cases where the number of zero values was too low (<10) or non-existent, we directly applied a ML regression. The models were trained using a simulated metagenomic dataset of 150 samples based on the Ocean Microbial Reference Gene Catalogue (OM-RGC) complete or nearly complete genomes (Sunagawa et al., 2015).
 
-This R package contains the functions and models to train and predict the relative counts of biosynthetic gene cluster classes in metagenomic data. This package is the core of the [ufBGCtoolbox](https://github.com/pereiramemo/ufBGCtoolbox) BGC class RCs prediction module. 
+bgcpred R package contains the models and functions and datasets to train and predict the relative counts of biosynthetic gene cluster classes in metagenomic data. This package is the core of the [ufBGCtoolbox](https://github.com/pereiramemo/ufBGCtoolbox) BGC class RCs prediction module. 
 
-bgcpred contains the BGC class RC models and the functions and datasets to train an test the models.
 In [Traning-your-data](https://rawgit.com/pereiramemo/ufBGCtoolbox/master/machine_leaRning/bgcpred_workflow.html) we show the analysis workflow necessay to train and test your models.
 
 ### a)
