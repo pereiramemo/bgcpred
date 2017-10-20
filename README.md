@@ -8,6 +8,9 @@ To construct a BGC class RC model, we applied a two-step zero-inflated process. 
 
 This R package contains the functions and models to train and predict the relative counts of biosynthetic gene cluster classes in metagenomic data. This package is the core of the [ufBGCtoolbox](https://github.com/pereiramemo/ufBGCtoolbox) BGC class RCs prediction module. 
 
+bgcpred contains the BGC class RC models and the functions and datasets to train an test the models.
+In [Traning-your-data](https://rawgit.com/pereiramemo/ufBGCtoolbox/master/machine_leaRning/bgcpred_workflow.html) we show the analysis workflow necessay to train and test your models.
+
 ### a)
 ![Training workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/training_models_workflow.png)
 
@@ -21,16 +24,6 @@ Figure 1. a) and b) BGC class RC model training and testing workflows, respectiv
 devtools::install_github('pereiramemo/bgcpred')
 library(bgcpred)
 ```
-
-### Documentation
-bgcpred consists of four functions and a training and testing datasets.  
-get_domains()  
-class_model_train()  
-class_model_predict()  
-wrap_up_predict()  
-
-In [Traning-your-data](https://rawgit.com/pereiramemo/ufBGCtoolbox/master/machine_leaRning/bgcpred_workflow.html) we show the analysis workflow necessay to train and test your models.
-
 
 ### Bibliography
 Breiman, L. (2001). Random forests. Machine Learning, 45(1), 5-32. http://doi.org/10.1023/A:1010933404324
