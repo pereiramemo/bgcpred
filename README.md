@@ -8,9 +8,10 @@ To construct a BGC class RC model, we applied a two-step zero-inflated process. 
 
 This R package contains the functions and models to train and predict the relative counts of biosynthetic gene cluster classes in metagenomic data. This package is the core of the [ufBGCtoolbox](https://github.com/pereiramemo/ufBGCtoolbox) BGC class RCs prediction module. 
 
-
+### a)
 ![Training workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/training_models_workflow.png)
 
+### b)
 ![Predict workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/predict_workflow.png)
 
 
