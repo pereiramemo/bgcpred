@@ -1,6 +1,5 @@
 # bgcpred
 
-### Introduction
 We created 24 BGC class-specific models to predict the relative counts (RCs) of biosynthetic genes cluster classes based on the domain annotation of unassembled metagenomic data. Each model was constructed using RCs of the BGC class and its corresponding protein domains according to the antiSMASH classification rules (Weber et al., 2015), as
 the response and predictor variables, respectively.
 
@@ -15,7 +14,8 @@ In [Traning-your-data](https://rawgit.com/pereiramemo/ufBGCtoolbox/master/machin
 ![Training workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/training_models_workflow.png)
 
 ### b)
-![Predict workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/predict_workflow.png)
+![Predict workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/predict_workflow.png)  
+
 Figure 1. a) and b) BGC class RC model training and testing workflows, respectively.
 
 ### Installation
