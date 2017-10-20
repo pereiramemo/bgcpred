@@ -13,7 +13,7 @@ This R package contains the functions and models to train and predict the relati
 
 ### b)
 ![Predict workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/predict_workflow.png)
-
+Figure 1. a) and b) BGC class RC model training and testing workflows, respectively.
 
 ### Installation
 
