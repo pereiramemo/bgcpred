@@ -16,7 +16,7 @@ In [Traning-your-data](https://rawgit.com/pereiramemo/ufBGCtoolbox/master/machin
 ### b)
 ![Predict workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/predict_workflow.png)  
 
-Figure 1. a) and b) BGC class RC model training and testing workflows, respectively.
+Figure 1. a) and b) BGC class RC model training and predict workflows, respectively.
 
 ### Installation
 
