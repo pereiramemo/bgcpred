@@ -64,7 +64,7 @@ class_model_train <- function(y,
 
   # direct regression when low absent counts  ---------------------------------
 
-  if ( sum(!subset) < 10 ) {
+  if ( sum(subset != 0) < 10 ) {
     set.seed(seed = seed)
 
     # remove only zero columns ------------------------------------------------
