@@ -67,6 +67,12 @@ class_model_train <- function(y,
   if ( sum(!subset) < 10 ) {
     set.seed(seed = seed)
 
+    # remove only zero columns ------------------------------------------------
+
+    x <- x[, colSums(x) > 0, drop =  F]
+
+    # train regressions -------------------------------------------------------
+
     if (regression_method == "rf") {
       model_r <- randomForest(y ~ . ,
                               data = x,
@@ -74,16 +80,21 @@ class_model_train <- function(y,
                               replace = T,
                               nodesize = 1)
     }
+
     if (regression_method == "lm") {
       model_r <- lm(y ~ ., data = x)
     }
+
     if (regression_method == "svm") {
       model_r <- svm( y ~ ., data = x )
     }
+
     results <- list(call = c(binary_method = NULL, regression_method = regression_method, seed = seed),
                     binary_model = NULL,
                     regression_model = model_r)
+
     return.list <- results
+
   } else {
 
     # double models when enougth absent counts --------------------------------
