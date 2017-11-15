@@ -64,7 +64,7 @@ class_model_train <- function(y,
 
   # direct regression when low absent counts  ---------------------------------
 
-  if ( sum(subset != 0) < 10 ) {
+  if ( sum(!subset) < 10 ) {
     set.seed(seed = seed)
 
     # remove only zero columns ------------------------------------------------
@@ -108,45 +108,57 @@ class_model_train <- function(y,
     # remove only zero columns ------------------------------------------------
 
     predictors_present_train <- predictors_present_train[, colSums(predictors_present_train) > 0, drop =  F]
-
+    
+    if ( is_empty(predictors_present_train) == T ) {
+      warning("not enough predictor values")
+      return(NULL)
+    }
+    
+    if ( is_empty(predictors_present_train) == F ) {
     # train binary model ------------------------------------------------------
 
-    set.seed(seed = seed)
-    if (binary_method == "rf") {
-      model_c <- randomForest(factor(response_binary_train) ~ .,
-                              data = predictors_train,
-                              ntree = 1000,
-                              mtry = 1,
-                              replace = T,
-                              nodesize = 10)
-    }
-    if (binary_method == "svm") {
-      predictors_train <- predictors_train[ ,colSums(predictors_present_train) > 0, drop = FALSE]
-      model_c <- svm(factor(response_binary_train) ~ ., data = predictors_train )
-    }
+      set.seed(seed = seed)
+      if (binary_method == "rf") {
+        model_c <- randomForest(factor(response_binary_train) ~ .,
+                                data = predictors_train,
+                                ntree = 1000,
+                                mtry = 1,
+                                replace = T,
+                                nodesize = 10)
+      }
+      
+      if (binary_method == "svm") {
+        predictors_train <- predictors_train[ ,colSums(predictors_present_train) > 0, drop = FALSE]
+        model_c <- svm(factor(response_binary_train) ~ ., data = predictors_train )
+      }
 
-    # train regression model --------------------------------------------------
+      # train regression model --------------------------------------------------
 
-    set.seed(seed = seed)
-    if (regression_method == "lm") {
-      model_r <- lm(response_present_train ~ ., data = predictors_present_train)
-  }
-    if (regression_method == "rf") {
+      set.seed(seed = seed)
+      
+      if (regression_method == "lm") {
+        model_r <- lm(response_present_train ~ ., data = predictors_present_train)
+      }
+      
+      if (regression_method == "rf") {
         model_r <- randomForest(response_present_train ~ . ,
                                 data = predictors_present_train,
                                 ntree = 1000,
                                 replace = T,
                                 nodesize = 1)
-    }
-    if (regression_method == "svm") {
-      predictors_present_train <- predictors_present_train[ ,colSums(predictors_present_train) > 0, drop = FALSE]
-      model_r <- svm(response_present_train ~ ., data = predictors_present_train)
-    }
+      }
+      
+      if (regression_method == "svm") {
+        predictors_present_train <- predictors_present_train[ ,colSums(predictors_present_train) > 0, drop = FALSE]
+        model_r <- svm(response_present_train ~ ., data = predictors_present_train)
+      }
 
-    results <- list(call = c(binary_method = binary_method, regression_method = regression_method, seed = seed),
-                    binary_model = model_c,
-                    regression_model = model_r)
-    return.list <-  results
+      results <- list(call = c(binary_method = binary_method, regression_method = regression_method, seed = seed),
+                      binary_model = model_c,
+                      regression_model = model_r)
+      return.list <-  results
+    
+    }    
   }
   return(return.list)
 }
