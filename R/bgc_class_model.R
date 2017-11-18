@@ -64,7 +64,7 @@ class_model_train <- function(y,
 
   # direct regression when low absent counts  ---------------------------------
 
-  if ( sum(!subset) < 10 ) {
+  if ( sum(!subset) < 10 | is.null(binary_method)  == T) {
     set.seed(seed = seed)
 
     # remove only zero columns ------------------------------------------------
@@ -109,12 +109,12 @@ class_model_train <- function(y,
 
     predictors_present_train <- predictors_present_train[, colSums(predictors_present_train) > 0, drop =  F]
 
-    if ( is_empty(predictors_present_train) == T ) {
+    if ( nrow(predictors_present_train) == 0 ) {
       warning("not enough predictor values")
       return(NULL)
     }
 
-    if ( is_empty(predictors_present_train) == F ) {
+    if ( nrow(predictors_present_train) > 0 ) {
     # train binary model ------------------------------------------------------
 
       set.seed(seed = seed)
