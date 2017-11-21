@@ -109,12 +109,12 @@ class_model_train <- function(y,
 
     predictors_present_train <- predictors_present_train[, colSums(predictors_present_train) > 0, drop =  F]
 
-    if ( nrow(predictors_present_train) == 0 ) {
+    if ( ncol(predictors_present_train) == 0 ) {
       warning("not enough predictor values")
       return(NULL)
     }
 
-    if ( nrow(predictors_present_train) > 0 ) {
+    if ( ncol(predictors_present_train) > 0 ) {
     # train binary model ------------------------------------------------------
 
       set.seed(seed = seed)
