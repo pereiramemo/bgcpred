@@ -56,6 +56,18 @@ class_model_train <- function(y,
                               seed = 111) {
   return.list <- list()
 
+  # check classification and regression syntaxis  -----------------------------
+  if (is.null(binary_method) == F ) {
+    if ( !binary_method %in% c("rf","xgb","svm") ) {
+      warning("binary method not found")
+      return(NULL)
+    }
+    if ( !regression_method %in% c("rf","xgb","svm","lm") ) {
+      warning("regression method not found")
+      return(NULL)
+    }
+  }
+
   # subsselect present data ---------------------------------------------------
 
   subset <- y != 0
