@@ -10,11 +10,11 @@ bgcpred R package contains the models, functions and datasets to train and predi
 
 In [Data simulation](https://github.com/pereiramemo/ufBGCtoolbox/wiki/Data-simulation) we have a template code that can be used generate your own training dataset. And in [Traning-your-data](https://rawgit.com/pereiramemo/ufBGCtoolbox/master/machine_leaRning/bgcpred_workflow.html) we show the analysis workflow necessary to train and test your models.
 
-### a)
-![Training workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/training_models_workflow.png)
 
-### b)
-![Predict workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/predict_workflow.png)  
+![Training workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/Traning_and_prediction_workflow.png)
+
+
+
 
 Figure 1. a) and b) BGC class RC model training and predict workflows, respectively.
 
