@@ -64,7 +64,7 @@ class_model_train <- function(y,
 
   # direct regression when low absent counts  ---------------------------------
 
-  if ( sum(!subset) < 10 | is.null(binary_method)  == T) {
+  if ( sum(!subset) < 10 | is.null(binary_method) == T) {
     set.seed(seed = seed)
 
     # remove only zero columns ------------------------------------------------
@@ -87,6 +87,17 @@ class_model_train <- function(y,
 
     if (regression_method == "svm") {
       model_r <- svm( y ~ ., data = x )
+    }
+
+    if (regression_method == "xgb") {
+      x <- as.matrix(x)
+      model_r <- xgboost(label = y,
+                         data = x,
+                         booster = "gblinear",
+                         nthread = 2,
+                         nrounds = 8,
+                         objective = "reg:linear",
+                         verbose = F)
     }
 
     results <- list(call = c(binary_method = NULL, regression_method = regression_method, seed = seed),
@@ -132,6 +143,19 @@ class_model_train <- function(y,
         model_c <- svm(factor(response_binary_train) ~ ., data = predictors_train )
       }
 
+
+      if (binary_method == "xgb") {
+        predictors_train <- as.matrix(predictors_train)
+        model_c <- xgboost(label = response_binary_train,
+                           data = predictors_train,
+                           max_depth = 8,
+                           eta = 1,
+                           nthread = 2,
+                           nrounds = 8,
+                           objective = "binary:logistic",
+                           verbose = F)
+      }
+
       # train regression model --------------------------------------------------
 
       set.seed(seed = seed)
@@ -151,6 +175,17 @@ class_model_train <- function(y,
       if (regression_method == "svm") {
         predictors_present_train <- predictors_present_train[ ,colSums(predictors_present_train) > 0, drop = FALSE]
         model_r <- svm(response_present_train ~ ., data = predictors_present_train)
+      }
+
+      if (regression_method == "xgb") {
+        predictors_present_train <- as.matrix(predictors_present_train)
+        model_r <- xgboost(label = response_present_train,
+                           data = predictors_present_train,
+                           booster = "gblinear",
+                           nthread = 2,
+                           nrounds = 8,
+                           objective = "reg:linear",
+                           verbose = F)
       }
 
       results <- list(call = c(binary_method = binary_method, regression_method = regression_method, seed = seed),
@@ -190,15 +225,31 @@ class_model_predict <- function(x,
 
   if (is.null(model_c)) {
 
+    if (class(model_r) == "xgb.Booster") {
+      x <- as.matrix(x)
+    }
+
     pred_d <- predict(model_r, x)
 
   } else {
 
-    pred_c <- predict(model_c, x)
+    if (class(model_c) == "xgb.Booster") {
+      x_matrix <- as.matrix(x)
+      pred_c <- predict(model_c, x_matrix)
+      pred_c <- as.numeric(pred_c > 0.5)
+    } else {
+      pred_c <- predict(model_c, x)
+    }
+
     tmp <- pred_c == 1
     names(tmp) <- names(pred_c)
     pred_c <- tmp
     predictors_present <- x[drop = F, pred_c, ]
+
+    if (class(model_r) == "xgb.Booster") {
+      predictors_present <- as.matrix(predictors_present)
+    }
+
     pred_r <- predict(model_r, predictors_present)
     pred_d <- pred_c
     pred_d[!pred_c] <- 0

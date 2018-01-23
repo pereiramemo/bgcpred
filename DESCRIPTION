@@ -14,5 +14,6 @@ Depends:
     randomForest (>= 4.6-12),
     tidyr (>= 0.6.1),
     tibble (>= 1.1.3),
-    vegan (>= 2.4-3)
+    vegan (>= 2.4-3),
+    xgboost (>= 0.6-4)
 RoxygenNote: 6.0.1.9000
