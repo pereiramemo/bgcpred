@@ -5,15 +5,15 @@ the response and predictor variables, respectively.
 
 To construct a BGC class RC model, we applied a two-step zero-inflated process. First, we predicted the presence or absence of the BGC class using a random forest (RF) binary classifier (Breiman, 2001). Second, we used a multiple linear (ML) regression to predict the BGC class RCs, but only if the class was previously predicted as present (see Figure 1). In the cases where the number of zero values was too low (<10) or non-existent, we directly applied a ML regression. The models were trained using a simulated metagenomic dataset of 150 samples based on the Ocean Microbial Reference Gene Catalogue (OM-RGC) complete or nearly complete genomes (Sunagawa et al., 2015).
 
-bgcpred R package contains the models, functions and datasets to train and predict the relative counts of biosynthetic gene cluster classes in metagenomic data. This package is the core of the [ufBGCtoolbox](https://github.com/pereiramemo/ufBGCtoolbox) BGC class RCs prediction module. 
+bgcpred R package contains the models, functions and datasets to train and predict the relative counts of biosynthetic gene cluster classes in metagenomic data. This package is the core of the
+[BiGMEx](https://github.com/pereiramemo/BiGMEx) BGC class RCs prediction module. 
 
 
-In [Data simulation](https://github.com/pereiramemo/ufBGCtoolbox/wiki/Data-simulation) we have a template code that can be used generate your own training dataset. And in [Traning-your-data](https://rawgit.com/pereiramemo/ufBGCtoolbox/master/machine_leaRning/bgcpred_workflow.html) we show the analysis workflow necessary to train and test your models.
+In [Data simulation](https://github.com/pereiramemo/BiGMEx/wiki/Data-simulation) we have a template code that can be used generate your own training dataset. And in [Traning-your-data](https://rawgit.com/pereiramemo/BiGMEx/master/machine_leaRning/bgcpred_workflow.html) we show the analysis workflow
+necessary to train and test your models.
 
 
 ![Training workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/Traning_and_prediction_workflow.png)
-
-
 
 
 Figure 1. a) and b) BGC class RC model training and predict workflows, respectively.
