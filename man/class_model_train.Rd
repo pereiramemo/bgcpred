@@ -4,7 +4,7 @@
 \alias{class_model_train}
 \title{Generate the BGC class models.}
 \usage{
-class_model_train(y, x, binary_method, regression_method, seed = 111)
+class_model_train(y, x, binary_method, regression_method, seed = 123)
 }
 \arguments{
 \item{y}{a numeric vector. This is the response variables
@@ -14,11 +14,12 @@ class_model_train(y, x, binary_method, regression_method, seed = 111)
 (i.e. domain abundances).}
 
 \item{binary_method}{method used in the binary classification. Complete
-match to "rf" or "svm" (random forest and support vector machine,
-respectively).}
+match to "rf", "svm" or "xgb" (random forest, support vector machine, and
+extreme gradient boost, respectively).}
 
 \item{regression_method}{method used in the regression. Complete match to
-"rf", "svm" or "lm" (random forest and support vector machine, linear model).}
+"lm", "rf", "svm" or "xgb" (linear model, random forest, support vector
+machine and extreme gradient boost, respectively).}
 
 \item{seed}{a number. Seed used to compute the random forest and support
 vector machine, if these are selected as binary or regression methods.}

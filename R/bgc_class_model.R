@@ -54,7 +54,7 @@ class_model_train <- function(y,
                               x,
                               binary_method,
                               regression_method,
-                              seed = 111) {
+                              seed = 123) {
   return.list <- list()
 
   # check classification and regression syntaxis  -----------------------------
