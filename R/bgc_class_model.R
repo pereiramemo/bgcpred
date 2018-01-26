@@ -33,10 +33,11 @@ get_domains <- function(bgc_class) {
 #' @param x a matrix of data frame. These are the predictor variables
 #' (i.e. domain abundances).
 #' @param binary_method method used in the binary classification. Complete
-#' match to "rf" or "svm" (random forest and support vector machine,
-#' respectively).
+#' match to "rf", "svm" or "xgb" (random forest, support vector machine, and
+#' extreme gradient boost, respectively).
 #' @param regression_method method used in the regression. Complete match to
-#' "rf", "svm" or "lm" (random forest and support vector machine, linear model).
+#' "lm", "rf", "svm" or "xgb" (linear model, random forest, support vector
+#' machine and extreme gradient boost, respectively).
 #' @param seed a number. Seed used to compute the random forest and support
 #' vector machine, if these are selected as binary or regression methods.
 #' @return A list containting the call and the binary and regression models.
