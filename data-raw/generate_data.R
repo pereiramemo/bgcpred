@@ -17,13 +17,15 @@ OMs_CLASS_URL <- paste(URL,"OMs_ref_genomes_class_cov_wide.tsv",sep = "")
 TBL_DOM_TRAIN <- read.table(OMs_DOM_URL, header = T, sep = "\t", row.names = 1)
 TBL_CLASS_TRAIN <- read.table(OMs_CLASS_URL, header = T, sep = "\t", row.names = 1)
 
-# join and convert to relative counts
-data_train <- dplyr::inner_join(x = tibble::rownames_to_column( TBL_DOM_TRAIN / rowSums( TBL_DOM_TRAIN )  ),
-                                y = tibble::rownames_to_column( TBL_CLASS_TRAIN / rowSums( TBL_CLASS_TRAIN )),
-                                by = "rowname" )
+# convert to relative counts and order rows
+TBL_DOM_TRAIN_norm <- TBL_DOM_TRAIN / rowSums( TBL_DOM_TRAIN )
+TBL_CLASS_TRAIN_norm <- TBL_CLASS_TRAIN / rowSums( TBL_CLASS_TRAIN )
 
+i <- rownames(TBL_DOM_TRAIN_norm)
+TBL_CLASS_TRAIN_norm <- TBL_CLASS_TRAIN_norm[i,]
+
+# create models
 bgc_classes <- colnames(TBL_CLASS_TRAIN)
-
 
 models_list_oms <- list()
 
@@ -38,13 +40,13 @@ for ( b in bgc_classes ) {
       next
     }
 
-    x_train <- data_train[ ,doms, drop = F]
-    y_train <- data_train[ ,b, drop = T]
+    x_train <- TBL_DOM_TRAIN_norm[ ,doms, drop = F]
+    y_train <- TBL_CLASS_TRAIN_norm[ ,b, drop = T]
 
     models_list_oms[[b]] <- class_model_train(x = x_train,
-                                          y = y_train,
-                                          regression_method = "lm",
-                                          binary_method = "rf")
+                                              y = y_train,
+                                              regression_method = "lm",
+                                              binary_method = "rf")
 
     models_list_oms[[b]]$doms <- doms
 
@@ -55,19 +57,21 @@ for ( b in bgc_classes ) {
 # -----------------------------------------------------------------------------
 
 # load dataset
-
 General_DOM_URL <- paste(URL,"General_metagenomes_dom_annot_wide.tsv",sep = "")
 General_CLASS_URL <- paste(URL,"General_ref_genomes_class_cov_wide.tsv",sep = "")
 
 TBL_DOM_TRAIN <- read.table(General_DOM_URL, header = T, sep = "\t", row.names = 1)
 TBL_CLASS_TRAIN <- read.table(General_CLASS_URL, header=T, sep="\t", row.names = 1)
 
-# join and convert to relative counts
-data_train <- dplyr::inner_join(x = tibble::rownames_to_column( TBL_DOM_TRAIN / rowSums( TBL_DOM_TRAIN )  ),
-                                y = tibble::rownames_to_column( TBL_CLASS_TRAIN / rowSums( TBL_CLASS_TRAIN )),
-                                by = "rowname" )
+# convert to relative counts and order rows
+TBL_DOM_TRAIN_norm <- TBL_DOM_TRAIN / rowSums( TBL_DOM_TRAIN )
+TBL_CLASS_TRAIN_norm <- TBL_CLASS_TRAIN / rowSums( TBL_CLASS_TRAIN )
 
-#bgc_classes <- colnames(TBL_CLASS_TRAIN)
+i <- rownames(TBL_DOM_TRAIN_norm)
+TBL_CLASS_TRAIN_norm <- TBL_CLASS_TRAIN_norm[i,]
+
+# create models
+bgc_classes <- colnames(TBL_CLASS_TRAIN)
 
 models_list_general <- list()
 
@@ -82,8 +86,8 @@ for ( b in bgc_classes ) {
     next
   }
 
-  x_train <- data_train[ ,doms, drop = F]
-  y_train <- data_train[ ,b, drop = T]
+  x_train <- TBL_DOM_TRAIN_norm[ ,doms, drop = F]
+  y_train <- TBL_CLASS_TRAIN_norm[ ,b, drop = T]
 
   models_list_general[[b]] <- class_model_train(x = x_train,
                                                 y = y_train,
