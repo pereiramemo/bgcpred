@@ -23,12 +23,12 @@ get_domains <- function(bgc_class) {
 }
 
 # -----------------------------------------------------------------------------
-# bgc class rc modeling -------------------------------------------------------
+# bgc class abundance modeling ------------------------------------------------
 # -----------------------------------------------------------------------------
 
 #' Generate the BGC class models.
 #'
-#' @param y a numeric vector. This is the response variables
+#' @param y a numeric vector. This is the response variable
 #' (i.e. class abundances).
 #' @param x a matrix of data frame. These are the predictor variables
 #' (i.e. domain abundances).
@@ -40,7 +40,7 @@ get_domains <- function(bgc_class) {
 #' machine and extreme gradient boost, respectively).
 #' @param seed a number. Seed used to compute the random forest and support
 #' vector machine, if these are selected as binary or regression methods.
-#' @return A list containting the call and the binary and regression models.
+#' @return A list containting the call, and the binary and regression models.
 #'
 #' @examples
 #' class_model_train(
