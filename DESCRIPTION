@@ -1,12 +1,12 @@
 Package: bgcpred
 Type: Package
-Title: Biosynthetic gene cluster prediction models and functions
+Title: Biosynthetic gene cluster abundance prediction models
 Version: 0.0.0.9000
 Author: Emiliano Pereira Flores
 Maintainer: Emiliano Pereira Flores <pereiramemo@gmail.com>
-Description: This package contains the data, functions, and models to train and
-  predict the BGC class relative counts based on the annotation of BGC domains.
-License: CC0
+Description: This package contains the data and functions to train the BGC 
+  class abundance models and generate the predictions.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Depends:
