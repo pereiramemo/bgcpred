@@ -246,7 +246,7 @@ class_model_predict <- function(x,
 
   } else {
 
-    if (class(model_c) == "xgb.Booster") {
+    if (class(model_c)[1] == "xgb.Booster") {
       x_matrix <- as.matrix(x)
       pred_c <- predict(model_c, x_matrix)
       pred_c <- as.numeric(pred_c > 0.5)
@@ -286,12 +286,12 @@ class_model_predict <- function(x,
 #' @examples
 #' wrap_up_predict(x)
 
-wrap_up_predict <- function(x,m = models_list_oms) {
+wrap_up_predict <- function(x, m = OMs_model) {
 
   pred <- list()
   used_models <- list()
 
-  for ( b in names(m)) {
+  for (b in names(m)) {
 
     predictors_var <- m[[b]]$doms
     check_predictors <- predictors_var %in% colnames(x)
