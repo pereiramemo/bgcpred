@@ -15,7 +15,7 @@ abundance of biosynthetic gene cluster classes in metagenomic data. This package
 In [Data simulation](https://github.com/pereiramemo/BiGMEx/wiki/Data-simulation) we have a template code that can be used generate your own training dataset. And in [Traning-your-data](https://rawgit.com/pereiramemo/BiGMEx/master/machine_leaRning/bgcpred_workflow.html) we show the analysis workflow necessary to train and test your models.
 
 
-![Training workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/Traning_and_prediction_workflow.pdf)
+![Training workflow](https://github.com/pereiramemo/bgcpred/blob/master/images/Traning_and_prediction_workflow.png)
 
 
 Figure 1. a) and b) BGC class abundance model training and predict workflows, respectively.
