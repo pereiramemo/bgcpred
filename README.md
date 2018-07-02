@@ -1,6 +1,6 @@
 # bgcpred
 
-We created 24 BGC class-specific models to predict the abundance of biosynthetic genes cluster classes based on the domain annotation of unassembled metagenomic data. Each model was constructed using the abundance of the BGC class and its corresponding protein domains according to the antiSMASH classification rules (Weber et al., 2015), as the response and predictor variables, respectively.
+We created BGC class-specific models to predict the abundance of biosynthetic genes cluster classes based on the domain annotation of unassembled metagenomic data. Each model was constructed using the abundance of the BGC class and its corresponding protein domains according to the antiSMASH classification rules (Weber et al., 2015), as the response and predictor variables, respectively.
 
 To construct a BGC class abundance model, we applied a two-step zero-inflated process. First, we predicted the presence or absence of the BGC class using a random forest (RF) binary classifier (Breiman, 2001). Second, we used multiple linear regression (MLR) to predict the BGC class abundance, but only if the class was previously predicted as present (see Figure 1). In the cases where the number of zero values was too low (<10) or non-existent, we directly applied a
 MLR. The models were trained using simulated metagenomic data, where we can
