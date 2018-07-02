@@ -277,6 +277,7 @@ class_model_predict <- function(x,
     pred_d[pred_c] <- pred_r
 
   }
+  pred_d[pred_d < 0] <- 0
   return(pred_d)
 }
 
