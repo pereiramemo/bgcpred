@@ -103,7 +103,9 @@ class_model_train <- function(y,
     }
 
     if (regression_method == "xgb") {
-      x <- as.matrix(x)
+      x <- as.matrix(x) %>%
+           apply(X = ., MARGIN = 2, FUN = as.numeric)
+
       model_r <- xgboost(label = y,
                          data = x,
                          booster = "gblinear",
@@ -158,7 +160,9 @@ class_model_train <- function(y,
 
 
       if (binary_method == "xgb") {
-        predictors_train <- as.matrix(predictors_train)
+        predictors_train <- as.matrix(predictors_train) %>%
+                            apply(X = ., MARGIN = 2, FUN = as.numeric)
+
         model_c <- xgboost(label = response_binary_train,
                            data = predictors_train,
                            max_depth = 8,
@@ -191,7 +195,8 @@ class_model_train <- function(y,
       }
 
       if (regression_method == "xgb") {
-        predictors_present_train <- as.matrix(predictors_present_train)
+        predictors_present_train <- as.matrix(predictors_present_train) %>%
+                                    apply(X = ., MARGIN = 2, FUN = as.numeric)
         model_r <- xgboost(label = response_present_train,
                            data = predictors_present_train,
                            booster = "gblinear",
@@ -238,8 +243,9 @@ class_model_predict <- function(x,
 
   if (is.null(model_c)) {
 
-    if (class(model_r) == "xgb.Booster") {
-      x <- as.matrix(x)
+    if (class(model_r)[1] == "xgb.Booster") {
+      x <- as.matrix(x) %>%
+           apply(X = ., MARGIN = 2, FUN = as.numeric)
     }
 
     pred_d <- predict(model_r, x)
@@ -247,7 +253,8 @@ class_model_predict <- function(x,
   } else {
 
     if (class(model_c)[1] == "xgb.Booster") {
-      x_matrix <- as.matrix(x)
+      x_matrix <- as.matrix(x) %>%
+                  apply(X = ., MARGIN = 2, FUN = as.numeric)
       pred_c <- predict(model_c, x_matrix)
       pred_c <- as.numeric(pred_c > 0.5)
     } else {
@@ -259,8 +266,9 @@ class_model_predict <- function(x,
     pred_c <- tmp
     predictors_present <- x[drop = F, pred_c, ]
 
-    if (class(model_r) == "xgb.Booster") {
-      predictors_present <- as.matrix(predictors_present)
+    if (class(model_r)[1] == "xgb.Booster") {
+      predictors_present <- as.matrix(predictors_present) %>%
+                            apply(X = ., MARGIN = 2, FUN = as.numeric)
     }
 
     pred_r <- predict(model_r, predictors_present)
